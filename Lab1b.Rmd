@@ -1,0 +1,116 @@
+---
+title: "Lab1b"
+author: "Huub"
+date: "16-2-2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+``` {r 7.1 packages}
+library(tidyverse)
+
+```
+
+``` {r 7.2 sample data}
+set.seed(1234)
+normals <- rnorm(n = 1000, mean = 5, sd= 1.3)
+normals_2 <- rnorm(1000,mean = 1.5, sd= 0.2)
+
+df <- tibble(A = normals,
+             B = normals_2)
+
+df
+```
+
+```{r 7.2.1 Plot histogram}
+df %>%  ## pipe `%>%` takes a value an puts it in a function
+  ggplot(aes(x = A)) + 
+  geom_histogram(bins = 70, colour = "red", fill = "red") +
+  geom_histogram(aes(x = B), fill = "green")
+```
+
+```{r 7.22 discuss}
+plot_histogram <- function(df,bins){
+  
+plot <- df %>% ggplot(aes(x = A)) + 
+  geom_histogram(bins = 70, colour = "red", fill = "red") +
+  geom_histogram(aes(x = B), fill = "green")
+  
+return(plot)
+}
+
+```
+
+``` {r exercise 1 create some vectors}
+set.seed(123)
+vec_1 <- rnorm(10)
+vec_2 <- as.integer(vec_1)
+vec_3 <- c(rep(TRUE, 3), c(rep(FALSE, 4)), NA)
+vec_4 <- as.numeric(vec_3)
+vec_5 <- c("Marc", "Ronald", "Maarten")
+```
+
+``` {r 2. calculator}
+sum(3,12,250)
+4902 - 3987
+2**24
+240/14
+mean(12+20)
+mean(10.8,13.7,15.9)
+```
+
+``` {3 datatypes}
+vec_8 <- c(10.5,20.4,30.5,28.9,5.4)
+vec_9 <- seq(from=50, to=-10, by=-1)
+vec_10 <- seq(from=-10,to=50,by=1)
+vec_11 <- c(tail(vec_10),5)
+vec_12 <- rep(c(1,0),times=500)
+
+set.seed(123)
+vec_13 <- c(runif(100,min=-1,max = 1))
+vec_14 <- c(rnorm(100, mean=2,sd=0.3))
+hist(vec_13)
+hist(vec_14)
+
+mean(vec_14)
+
+vec_14[5] <- NA
+vec_14
+mean(vec_14,na.rm=TRUE)
+```
+
+``` {4 vector indices}
+vec_ind <- as.integer(vec_1)
+vec_ind <- vec_ind[vec_ind == 1]
+```
+
+``` {5 Matrix}
+matrix_1 <- matrix(1:12,nrow=3,ncol=4,byrow=TRUE)
+```
+
+``` {6 }
+```
